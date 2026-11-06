@@ -1,0 +1,15 @@
+# Corrosion Vision — install with: pip install -r requirements.txt
+# Pin ultralytics loosely: YOLO26 needs a recent release. If pip
+# installs an older ultralytics that does not know yolo26n.pt, upgrade:
+#   pip install -U ultralytics
+# and fall back to yolo11n.pt / yolo11n-cls.pt (see configs/config.yaml).
+ultralytics>=8.3
+torch>=2.0
+opencv-python-headless>=4.8
+numpy>=1.24
+Pillow>=10.0
+streamlit>=1.35
+reportlab>=4.0
+pyyaml>=6.0
+gradio>=4.0
+pytest>=7.0

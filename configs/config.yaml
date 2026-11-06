@@ -1,0 +1,56 @@
+# Corrosion Vision — single source of truth for model names and thresholds.
+# Change a value here, not in scattered code. No metric in this file is a
+# claimed result: it is a setting the user chooses before training.
+project: corrosion-vision
+author: "Shubhang S. Galagali, 231MT049"
+affiliation: "Metallurgical and Materials Engineering, NITK Surathkal"
+
+# YOLO — latest Ultralytics release at time of writing (Jan 2026, per
+# Ultralytics docs: YOLO26 is the recommended starting point for new
+# projects; YOLO11 is the mature alternative). If YOLO26 weights cannot
+# be downloaded in your environment, use the fallback names below.
+detect_model: "yolo26n.pt"
+detect_model_fallback: "yolo11n.pt"
+classify_model: "yolo26n-cls.pt"
+classify_model_fallback: "yolo11n-cls.pt"
+imgsz: 640
+conf_threshold: 0.25
+iou_threshold: 0.45
+
+# Training defaults (Colab T4, free tier). Reduce epochs/batch on CPU.
+detect_epochs: 50
+classify_epochs: 25
+batch: 16
+
+# Detection dataset (Kaggle, MIT licence, verified 2026-11-05):
+#   wednesday233/corrosion-detect-dataset — 268 images, 268 YOLO labels,
+#   ship-cabin corrosion areas, 8.53 MB.
+# Classifier dataset (Kaggle, Apache 2.0, verified 2026-11-05):
+#   ebrahim007/marine-corrosion-dataset — 9,000 images, 9 folders x 1,000,
+#   512x512, 4.71 GB total. Use --max-per-class for Colab (default 300).
+detect_classes: ["corrosion"]
+classify_classes:
+  - "crevice_corrosion"
+  - "erosion_corrosion"
+  - "galvanic_corrosion"
+  - "healthy_structure"
+  - "mic_corrosion"
+  - "pitting_corrosion"
+  - "stress_corrosion"
+  - "under_insulation_corrosion"
+  - "uniform_corrosion"
+
+# Severity: ASTM D610 rust-grade table (see docs/STANDARDS.md).
+# Grade: (upper % rusted, inclusive). Grade 10 is <=0.01%, grade 0 is >50%.
+d610_table:
+  - [10, 0.01]
+  - [9, 0.03]
+  - [8, 0.10]
+  - [7, 0.30]
+  - [6, 1.00]
+  - [5, 3.00]
+  - [4, 10.00]
+  - [3, 16.00]
+  - [2, 33.00]
+  - [1, 50.00]
+  - [0, 100.00]

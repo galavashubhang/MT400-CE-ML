@@ -1,0 +1,23 @@
+# Secrets — never commit
+kaggle.json
+.env
+
+# Data and weights — large, and (for weights) trained by the user
+data/raw/
+data/yolo_detect/
+data/cls/
+runs/
+models/
+*.pt
+*.onnx
+
+# Python / Streamlit / Colab artefacts
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.streamlit/secrets.toml
+results/
+examples/*.jpg
+examples/*.png
